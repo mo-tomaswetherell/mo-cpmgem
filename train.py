@@ -95,6 +95,7 @@ flags.mark_flags_as_required(["config", "datadir", "workdir"])
 
 
 def main(_):
+    # Setup MLflow tracking
     mlflow.set_experiment(FLAGS.mlflow_experiment)
     mlflow.set_tracking_uri(f"http://127.0.0.1:{FLAGS.mlflow_port}")
     with mlflow.start_run(run_name=FLAGS.mlflow_run_name):
