@@ -1,0 +1,10 @@
+name: mo-cpmgem
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - ruff
+  - pre_commit=3.3.3
+  - pip
+  - pip:
+    - .
