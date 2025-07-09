@@ -39,7 +39,7 @@ from .models import cncsnpp, cunet
 from .models import utils as mutils
 from .models.ema import ExponentialMovingAverage
 from .models.location_params import LocationParams
-from .mlde_utils import restore_checkpoint, save_checkpoint
+from .utils import restore_checkpoint, save_checkpoint
 from mlde.data import get_dataloader
 from mlde.mlde_utils import DatasetMetadata
 

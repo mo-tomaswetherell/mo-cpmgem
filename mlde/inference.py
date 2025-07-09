@@ -24,7 +24,7 @@ from mlde.models.ema import (
 from mlde.models.location_params import (
     LocationParams,
 )
-from mlde.mlde_utils import restore_checkpoint
+from mlde.utils import restore_checkpoint
 from mlde.models import utils as mutils, cncsnpp, cunet, layerspp, layers, normalization
 from mlde.sde_lib import (
     VESDE,
