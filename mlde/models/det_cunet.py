@@ -5,7 +5,7 @@ import logging
 import torch.nn as nn
 from ml_collections.config_dict import ConfigDict
 
-from src.mlde.unet import unet  # Will throw an error
+from mlde.unet import unet  # Will throw an error
 from . import utils
 
 
@@ -14,7 +14,7 @@ def create_model(config, num_predictors):
         return unet.UNet(num_predictors, 1)
 
 
-from src.mlde_utils.training.dataset import get_variables
+from mlde.utils.training.dataset import get_variables
 
 ######################################
 # !!!! DETERMINISTIC ONLY       !!!! #

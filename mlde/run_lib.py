@@ -40,8 +40,8 @@ from .models import utils as mutils
 from .models.ema import ExponentialMovingAverage
 from .models.location_params import LocationParams
 from .utils import restore_checkpoint, save_checkpoint
-from src.mlde.data import get_dataloader
-from src.mlde_utils import DatasetMetadata
+from mlde.data import get_dataloader
+from mlde.utils import DatasetMetadata
 
 
 def val_loss(

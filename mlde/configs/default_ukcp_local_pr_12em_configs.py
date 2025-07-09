@@ -1,6 +1,6 @@
 """Default config for training model on UKCP Local precip data with 1 ensemble member."""
 
-from src.mlde.configs.default_ukcp_local_pr_1em_configs import (
+from mlde.configs.default_ukcp_local_pr_1em_configs import (
     get_default_configs as get_base_configs,
 )
 

@@ -17,7 +17,7 @@
 """Training conditional U-Net on precip data with sub-VP SDE.
 DEBUGGING ONLY"""
 
-from src.mlde.configs.default_ukcp_local_pr_1em_configs import get_default_configs
+from mlde.configs.default_ukcp_local_pr_1em_configs import get_default_configs
 
 
 def get_config():

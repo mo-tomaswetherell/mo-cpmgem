@@ -21,7 +21,7 @@ This is opposed to using a model ready for score-based denoising
 but training it in a deterministic fashion.
 """
 
-from src.mlde.configs.deterministic.default_configs import get_default_configs
+from mlde.configs.deterministic.default_configs import get_default_configs
 
 
 def get_config():

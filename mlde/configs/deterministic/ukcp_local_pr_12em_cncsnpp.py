@@ -17,7 +17,7 @@
 # Lint as: python3
 """Training NCSN++ on precip data in a deterministic fashion."""
 
-from src.mlde.configs.deterministic.default_configs import get_default_configs
+from mlde.configs.deterministic.default_configs import get_default_configs
 
 
 def get_config():

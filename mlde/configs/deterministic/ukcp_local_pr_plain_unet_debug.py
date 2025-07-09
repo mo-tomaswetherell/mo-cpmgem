@@ -21,7 +21,7 @@ This is opposed to using a model ready for score-based denoising
 but training it in a deterministic fashion.
 """
 
-from src.mlde.configs.deterministic.ukcp_local_pr_12em_tuned_plain_unet import (
+from mlde.configs.deterministic.ukcp_local_pr_12em_tuned_plain_unet import (
     get_config as get_default_configs,
 )
 

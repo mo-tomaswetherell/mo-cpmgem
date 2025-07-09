@@ -12,21 +12,21 @@ from tqdm import tqdm
 from tqdm.contrib.logging import logging_redirect_tqdm
 from ml_collections.config_dict import ConfigDict
 
-import src.mlde.models as models
-import src.mlde.sampling as sampling
-from src.mlde.data import np_samples_to_xr
-from src.mlde_utils.training.dataset import get_variables
-from src.mlde_utils.transforms import ComposeT
-from src.mlde.losses import get_optimizer
-from src.mlde.models.ema import (
+import mlde.models as models
+import mlde.sampling as sampling
+from mlde.data import np_samples_to_xr
+from mlde.utils.training.dataset import get_variables
+from mlde.utils.transforms import ComposeT
+from mlde.losses import get_optimizer
+from mlde.models.ema import (
     ExponentialMovingAverage,
 )
-from src.mlde.models.location_params import (
+from mlde.models.location_params import (
     LocationParams,
 )
-from src.mlde.utils import restore_checkpoint
-from src.mlde.models import utils as mutils, cncsnpp, cunet, layerspp, layers, normalization
-from src.mlde.sde_lib import (
+from mlde.utils import restore_checkpoint
+from mlde.models import utils as mutils, cncsnpp, cunet, layerspp, layers, normalization
+from mlde.sde_lib import (
     VESDE,
     VPSDE,
     subVPSDE,

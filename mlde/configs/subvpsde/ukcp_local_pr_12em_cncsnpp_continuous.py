@@ -13,7 +13,7 @@
 # limitations under the License.
 """Training NCSN++ on precip data with sub-VP SDE."""
 
-from src.mlde.configs.default_ukcp_local_pr_12em_configs import get_default_configs
+from mlde.configs.default_ukcp_local_pr_12em_configs import get_default_configs
 
 
 def get_config():
