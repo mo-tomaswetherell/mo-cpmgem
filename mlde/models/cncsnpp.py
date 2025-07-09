@@ -26,7 +26,7 @@ import torch
 import torch.nn as nn
 from ml_collections.config_dict import ConfigDict
 
-from mlde.utils.training.dataset import get_variables
+from mlde.mlde_utils.training.dataset import get_variables
 
 from . import layers, layerspp, normalization, utils
 

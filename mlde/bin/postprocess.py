@@ -7,8 +7,8 @@ from typing import Callable
 import typer
 import xarray as xr
 from mlde.postprocess import to_gcm_domain, xrqm
-from mlde.utils import TIME_PERIODS, samples_glob, samples_path
-from mlde.utils.training.dataset import open_raw_dataset_split
+from mlde.mlde_utils import TIME_PERIODS, samples_glob, samples_path
+from mlde.mlde_utils.training.dataset import open_raw_dataset_split
 
 logging.basicConfig(
     level=logging.INFO,

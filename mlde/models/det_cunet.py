@@ -14,7 +14,7 @@ def create_model(config, num_predictors):
         return unet.UNet(num_predictors, 1)
 
 
-from mlde.utils.training.dataset import get_variables
+from mlde.mlde_utils.training.dataset import get_variables
 
 ######################################
 # !!!! DETERMINISTIC ONLY       !!!! #

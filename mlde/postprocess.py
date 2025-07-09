@@ -3,9 +3,9 @@ from typing import Callable
 
 import numpy as np
 import xarray as xr
-from mlde.utils.data.remapcon import Remapcon
-from mlde.utils.data.select_gcm_domain import SelectGCMDomain
-from mlde.utils.data.shift_lon_break import ShiftLonBreak
+from mlde.mlde_utils.data.remapcon import Remapcon
+from mlde.mlde_utils.data.select_gcm_domain import SelectGCMDomain
+from mlde.mlde_utils.data.shift_lon_break import ShiftLonBreak
 
 """Postprocessing of samples from an emulator."""
 
@@ -76,7 +76,7 @@ def xrqm(
 
 
 def to_gcm_domain(ds: xr.Dataset):
-    target_grid_filepath = files("mlde.utils.data").joinpath(
+    target_grid_filepath = files("mlde.mlde_utils.data").joinpath(
         "target_grids/60km/global/pr/moose_grid.nc"
     )
     ds = Remapcon(target_grid_filepath).run(ds)

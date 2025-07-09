@@ -15,8 +15,8 @@ from ml_collections.config_dict import ConfigDict
 import mlde.models as models
 import mlde.sampling as sampling
 from mlde.data import np_samples_to_xr
-from mlde.utils.training.dataset import get_variables
-from mlde.utils.transforms import ComposeT
+from mlde.mlde_utils.training.dataset import get_variables
+from mlde.mlde_utils.transforms import ComposeT
 from mlde.losses import get_optimizer
 from mlde.models.ema import (
     ExponentialMovingAverage,
@@ -24,7 +24,7 @@ from mlde.models.ema import (
 from mlde.models.location_params import (
     LocationParams,
 )
-from mlde.utils import restore_checkpoint
+from mlde.mlde_utils import restore_checkpoint
 from mlde.models import utils as mutils, cncsnpp, cunet, layerspp, layers, normalization
 from mlde.sde_lib import (
     VESDE,

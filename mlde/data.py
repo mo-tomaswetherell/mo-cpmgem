@@ -6,10 +6,10 @@ import cftime
 import numpy as np
 import torch
 import xarray as xr
-from mlde.utils.training.dataset import get_dataset, get_variables
+from mlde.mlde_utils.training.dataset import get_dataset, get_variables
 from torch.utils.data import DataLoader, Dataset
 
-from mlde.utils.transforms import ComposeT
+from mlde.mlde_utils.transforms import ComposeT
 
 TIME_RANGE = (
     cftime.Datetime360Day(1980, 12, 1, 12, 0, 0, 0, has_year_zero=True),
