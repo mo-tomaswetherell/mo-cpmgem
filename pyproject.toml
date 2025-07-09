@@ -28,6 +28,7 @@ dependencies = [
   "netCDF4",
   "scipy",
   "tqdm",
+  "ninja"
 ]
 
 [tool.setuptools.packages.find]
