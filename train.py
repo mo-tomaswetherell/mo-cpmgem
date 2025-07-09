@@ -21,9 +21,9 @@ Example use:
 mlflow server --host 127.0.0.1 --port 5000
 
 python train.py \
-  --config=mlde/configs/subvpsde/ukcp_local_pr_12em_cncsnpp_continuous.py \
-  --datadir=/path/to/dataset/dir \
-  --workdir=/path/to/workdir
+  --config=<full path to config file> \
+  --datadir=<full path to directory containing the dataset specified in the config> \
+  --workdir=<path to directory to write outputs to>
 ```
 """
 
@@ -54,8 +54,8 @@ config_flags.DEFINE_config_file(
     "config",
     None,
     (
-        "Path to training config file. To train the model used in the paper use the config file"
-        " ukcp_local_pr_12em_cncsnpp_continuous.py"
+        "Path to training config file. To train the model used in the paper use the config file "
+        "ukcp_local_pr_12em_cncsnpp_continuous.py"
     ),
     lock_config=True,
 )
