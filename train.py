@@ -18,8 +18,6 @@ Training script for CPMGEM.
 Example use:
 
 ```bash
-mlflow server --host 127.0.0.1 --port 5000
-
 python train.py \
   --config=<full path to config file> \
   --datadir=<full path to directory containing the dataset specified in the config> \
@@ -74,11 +72,6 @@ flags.DEFINE_string(
     "Path to working directory. All outputs (checkpoints, transforms) are stored here.",
 )
 flags.DEFINE_string(
-    "mlflow_port",
-    "5000",
-    ("Port on which the MLflow server is running. Defaults to 5000."),
-)
-flags.DEFINE_string(
     "mlflow_experiment",
     "cpmgem",
     "Name of the experiment. Used to group runs in MLflow.",
@@ -97,7 +90,7 @@ flags.mark_flags_as_required(["config", "datadir", "workdir"])
 def main(_):
     # Setup MLflow tracking
     mlflow.set_experiment(FLAGS.mlflow_experiment)
-    mlflow.set_tracking_uri(f"http://127.0.0.1:{FLAGS.mlflow_port}")
+    mlflow.set_tracking_uri(f"file:{FLAGS.workdir}/mlruns")
     with mlflow.start_run(run_name=FLAGS.mlflow_run_name):
         # Log the configuration
         mlflow.log_params(FLAGS.config.to_dict())

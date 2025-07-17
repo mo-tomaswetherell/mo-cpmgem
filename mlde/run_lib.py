@@ -292,7 +292,7 @@ def train(config: ConfigDict, datadir: str, workdir: str):
                             % (state["epoch"], state["step"], loss.item())
                         )
                         mlflow.log_metric(
-                            "Training loss (average per sample, per step)",
+                            "Training loss per step",
                             loss.item(),
                             step=state["step"],
                         )
@@ -305,7 +305,7 @@ def train(config: ConfigDict, datadir: str, workdir: str):
                             % (state["epoch"], state["step"], val_set_loss)
                         )
                         mlflow.log_metric(
-                            "Validation loss (average per sample, per step)",
+                            "Validation loss per step",
                             val_set_loss,
                             step=state["step"],
                         )
@@ -318,12 +318,8 @@ def train(config: ConfigDict, datadir: str, workdir: str):
             train_dl
         )  # average loss per sample in the training set
         val_set_loss = val_loss(config, eval_dl, eval_step_fn, state)
-        mlflow.log_metric(
-            "Training loss (average per sample, per epoch)", train_set_loss, step=state["epoch"]
-        )
-        mlflow.log_metric(
-            "Validation loss (average per sample, per epoch)", val_set_loss, step=state["epoch"]
-        )
+        mlflow.log_metric("Training loss per epoch", train_set_loss, step=state["epoch"])
+        mlflow.log_metric("Validation loss per epoch", val_set_loss, step=state["epoch"])
 
         # Save a temporary checkpoint to resume training after each epoch
         save_checkpoint(checkpoint_meta_dir, state)
