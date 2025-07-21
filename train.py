@@ -18,8 +18,6 @@ Training script for CPMGEM.
 Example use:
 
 ```bash
-mlflow server --host 127.0.0.1 --port 5000
-
 python train.py \
   --config=<full path to config file> \
   --datadir=<full path to directory containing the dataset specified in the config> \
@@ -27,15 +25,9 @@ python train.py \
 ```
 """
 
+print("Starting train.py script.")
+
 import logging
-
-import mlflow
-from absl import app
-from absl import flags
-from ml_collections.config_flags import config_flags
-
-import mlde.run_lib as run_lib
-
 
 # Set up logger
 logging.basicConfig(
@@ -45,6 +37,18 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
+
+logger.info("Set up logger. About to import libraries.")
+
+from absl import app
+from absl import flags
+from ml_collections.config_flags import config_flags
+
+logger.info("Finished importing libraries. About to import run_lib.")
+
+import mlde.run_lib as run_lib
+
+logger.info("Finished importing run_lib.")
 
 
 FLAGS = flags.FLAGS
@@ -73,39 +77,17 @@ flags.DEFINE_string(
     None,
     "Path to working directory. All outputs (checkpoints, transforms) are stored here.",
 )
-flags.DEFINE_string(
-    "mlflow_port",
-    "5000",
-    ("Port on which the MLflow server is running. Defaults to 5000."),
-)
-flags.DEFINE_string(
-    "mlflow_experiment",
-    "cpmgem",
-    "Name of the experiment. Used to group runs in MLflow.",
-)
-flags.DEFINE_string(
-    "mlflow_run_name",
-    None,
-    (
-        "Name of the run. If not specified, a default name will be generated based on the "
-        "current timestamp."
-    ),
-)
 flags.mark_flags_as_required(["config", "datadir", "workdir"])
 
 
 def main(_):
-    # Setup MLflow tracking
-    mlflow.set_experiment(FLAGS.mlflow_experiment)
-    mlflow.set_tracking_uri(f"http://127.0.0.1:{FLAGS.mlflow_port}")
-    with mlflow.start_run(run_name=FLAGS.mlflow_run_name):
-        # Log the configuration
-        mlflow.log_params(FLAGS.config.to_dict())
-        mlflow.log_param("datadir", FLAGS.datadir)
-        mlflow.log_param("workdir", FLAGS.workdir)
+    logger.info(f"Config: \n{FLAGS.config.to_dict()}")
+    logger.info(f"datadir: {FLAGS.datadir}")
+    logger.info(f"workdir: {FLAGS.workdir}")
 
-        # Start training
-        run_lib.train(FLAGS.config, FLAGS.datadir, FLAGS.workdir)
+    # Start training
+    logger.info("Starting training with run_lib.train()")
+    run_lib.train(FLAGS.config, FLAGS.datadir, FLAGS.workdir)
 
 
 if __name__ == "__main__":

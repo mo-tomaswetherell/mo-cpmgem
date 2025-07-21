@@ -20,12 +20,6 @@ conda activate mo-cpmgem
 
 ## Training
 
-Start an MLflow server:
-
-```bash
-mlflow server --host 127.0.0.1 --port 5000
-```
-
 This will be used to track/monitor the experiment.
 
 In another terminal tab, run the training script:

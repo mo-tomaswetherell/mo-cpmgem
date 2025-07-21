@@ -19,7 +19,6 @@ dependencies = [
   "absl-py>=2.1.0",
   "cdo",
   "codetiming",
-  "mlflow",
   "ml-collections",
   "shortuuid",
   "typer",

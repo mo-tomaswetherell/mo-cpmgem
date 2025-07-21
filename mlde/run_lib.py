@@ -26,7 +26,6 @@ from collections import defaultdict
 
 import torch
 import torchvision
-import mlflow
 from codetiming import Timer
 from tqdm import tqdm
 from tqdm.contrib.logging import logging_redirect_tqdm
@@ -119,8 +118,6 @@ def train(config: ConfigDict, datadir: str, workdir: str):
     )
 
     logging.info(f"Target transform keys: {dict(target_xfm_keys)}")
-    mlflow.log_param("target_xfm_keys", dict(target_xfm_keys))
-
     logging.info(f"Config: \n{config}")
 
     run_config = dict(
@@ -130,7 +127,7 @@ def train(config: ConfigDict, datadir: str, workdir: str):
         sde=config.training.sde,
         num_train_epochs=config.training.n_epochs,
     )
-    mlflow.log_params(run_config)
+    logging.info(f"Run config: {run_config}")
 
     # Build dataloaders
     dataset_meta = DatasetMetadata(datadir, config.data.dataset_name)
@@ -291,11 +288,6 @@ def train(config: ConfigDict, datadir: str, workdir: str):
                             "epoch: %d, step: %d, train_loss: %.5e"
                             % (state["epoch"], state["step"], loss.item())
                         )
-                        mlflow.log_metric(
-                            "Training loss (average per sample, per step)",
-                            loss.item(),
-                            step=state["step"],
-                        )
 
                     # Report the loss on an evaluation dataset periodically
                     if state["step"] % config.training.eval_freq == 0:
@@ -303,11 +295,6 @@ def train(config: ConfigDict, datadir: str, workdir: str):
                         logging.info(
                             "epoch: %d, step: %d, val_loss: %.5e"
                             % (state["epoch"], state["step"], val_set_loss)
-                        )
-                        mlflow.log_metric(
-                            "Validation loss (average per sample, per step)",
-                            val_set_loss,
-                            step=state["step"],
                         )
 
                     # Log progress so far on epoch
@@ -318,11 +305,10 @@ def train(config: ConfigDict, datadir: str, workdir: str):
             train_dl
         )  # average loss per sample in the training set
         val_set_loss = val_loss(config, eval_dl, eval_step_fn, state)
-        mlflow.log_metric(
-            "Training loss (average per sample, per epoch)", train_set_loss, step=state["epoch"]
-        )
-        mlflow.log_metric(
-            "Validation loss (average per sample, per epoch)", val_set_loss, step=state["epoch"]
+
+        logging.info(
+            f"\nFinished epoch {state['epoch']}."
+            f"train_set_loss: {train_set_loss:.5e}, val_loss: {val_set_loss:.5e}\n"
         )
 
         # Save a temporary checkpoint to resume training after each epoch
