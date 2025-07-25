@@ -81,6 +81,13 @@ flags.mark_flags_as_required(["config", "datadir", "workdir"])
 
 
 def main(_):
+    logging.getLogger().handlers.clear()
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
+
     logger.info(f"Config: \n{FLAGS.config.to_dict()}")
     logger.info(f"datadir: {FLAGS.datadir}")
     logger.info(f"workdir: {FLAGS.workdir}")
