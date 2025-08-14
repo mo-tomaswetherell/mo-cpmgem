@@ -1,6 +1,6 @@
 # mo-mlde
 
-This is a fork of Henry Addison's [mlde](https://github.com/henryaddison/mlde) repository.
+This is a fork of Henry Addison's [mlde](https://github.com/henryaddison/mlde) repository, with changes made to remove dependencies.
 
 ## Setup
 
